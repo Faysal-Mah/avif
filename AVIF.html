@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A.V.I.F - Atelier Valorisation Formation Insertion</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, #2d5016, #4a7c59);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-icon {
+            width: 60px;
+            height: 60px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #2d5016;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .logo h1 {
+            font-size: 1.8rem;
+            margin: 0;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            padding: 5px 0;
+            border-bottom: 2px solid transparent;
+        }
+
+        nav a:hover {
+            color: #a8d5ba;
+            border-bottom-color: #a8d5ba;
+        }
+
+        .hero {
+            background: linear-gradient(rgba(45, 80, 22, 0.9), rgba(74, 124, 89, 0.9)), 
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><rect fill="%234a7c59" width="1200" height="800"/><path fill="%236b9b7c" d="M0,400 Q300,200 600,400 T1200,400 V800 H0 Z"/></svg>');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+        }
+
+        .hero h2 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            font-weight: 600;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+            font-weight: 300;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: #c8102e;
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(200, 16, 46, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .cta-button:hover {
+            background: #a00d26;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(200, 16, 46, 0.4);
+        }
+
+        .section {
+            padding: 80px 0;
+        }
+
+        .section-alt {
+            background: white;
+        }
+
+        .section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            text-align: center;
+            color: #2d5016;
+            font-weight: 700;
+        }
+
+        .section h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: #4a7c59;
+            font-weight: 600;
+        }
+
+        .need-statement {
+            background: linear-gradient(135deg, #c8102e, #a00d26);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .need-statement h2 {
+            color: white;
+            margin-bottom: 40px;
+        }
+
+        .need-content {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .need-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .need-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .need-item h4 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: #ffffff;
+        }
+
+        .services {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin: 50px 0;
+        }
+
+        .service-card {
+            background: white;
+            padding: 35px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-left: 5px solid #4a7c59;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+        }
+
+        .service-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .service-icon {
+            width: 50px;
+            height: 50px;
+            background: #4a7c59;
+            color: white;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .values {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            padding: 60px 0;
+            margin: 40px 0;
+            border-radius: 10px;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .value-item {
+            text-align: center;
+            padding: 30px 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.05);
+        }
+
+        .value-icon {
+            width: 80px;
+            height: 80px;
+            background: #4a7c59;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        .stats {
+            background: #2d5016;
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .stats h2 {
+            color: white;
+            margin-bottom: 50px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 50px;
+            margin-top: 40px;
+        }
+
+        .stat-item {
+            padding: 20px;
+        }
+
+        .stat-item h3 {
+            font-size: 3.5rem;
+            color: #a8d5ba;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .stat-item p {
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: start;
+            margin: 50px 0;
+        }
+
+        .about-text {
+            padding: 20px 0;
+        }
+
+        .about-image {
+            background: linear-gradient(135deg, #4a7c59, #6b9b7c);
+            height: 450px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 4rem;
+            font-weight: bold;
+        }
+
+        .philosophy {
+            background: #f8f9fa;
+            padding: 60px 0;
+            margin: 60px 0;
+            border-radius: 10px;
+        }
+
+        .quote-box {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            border-left: 6px solid #4a7c59;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            margin: 30px 0;
+        }
+
+        .contact-form {
+            background: white;
+            padding: 50px;
+            border-radius: 10px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.1);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e9ecef;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+            font-family: inherit;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #4a7c59;
+        }
+
+        .form-group textarea {
+            height: 140px;
+            resize: vertical;
+        }
+
+        footer {
+            background: #2d5016;
+            color: white;
+            padding: 60px 0 30px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 50px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 25px;
+            color: #a8d5ba;
+            font-weight: 600;
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: #ccc;
+            text-decoration: none;
+            line-height: 1.8;
+            margin-bottom: 10px;
+        }
+
+        .footer-section a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #4a7c59;
+            color: #999;
+        }
+
+        .impact-section {
+            background: white;
+            padding: 80px 0;
+        }
+
+        .impact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .impact-item {
+            padding: 30px;
+            border-radius: 10px;
+            background: #f8f9fa;
+            border-top: 4px solid #c8102e;
+        }
+
+        .impact-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #c8102e;
+            margin-bottom: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 15px;
+            }
+
+            .hero h2 {
+                font-size: 2.2rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .services {
+                grid-template-columns: 1fr;
+            }
+
+            .need-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-form {
+                padding: 30px;
+            }
+        }
+
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #4a7c59;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            opacity: 0;
+            visibility: hidden;
+            z-index: 1000;
+        }
+
+        .scroll-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-top:hover {
+            background: #2d5016;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">AVIF</div>
+                    <div>
+                        <h1>A.V.I.F</h1>
+                        <p style="font-size: 0.9rem; margin: 0; opacity: 0.9;">Atelier Valorisation Formation Insertion</p>
+                    </div>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#accueil">Accueil</a></li>
+                        <li><a href="#besoin">Le Besoin</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#impact">Impact</a></li>
+                        <li><a href="#apropos">À propos</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section id="accueil" class="hero">
+        <div class="container">
+            <h2>Combler le fossé de l'insertion sociale</h2>
+            <p>
+                A.V.I.F répond à un besoin essentiel : accompagner les personnes exclues des dispositifs classiques d'insertion 
+                vers une réintégration professionnelle et sociale durable
+            </p>
+            <a href="#contact" class="cta-button">Prendre Contact</a>
+        </div>
+    </section>
+
+    <section id="besoin" class="need-statement">
+        <div class="container">
+            <h2>Un Constat Alarmant</h2>
+            <div class="need-content">
+                <p style="font-size: 1.3rem; margin-bottom: 30px; font-weight: 300;">
+                    Trop de personnes issues de l'immigration ou de milieux marginalisés sont laissées de côté 
+                    par les dispositifs classiques d'insertion professionnelle et sociale.
+                </p>
+                <div class="need-grid">
+                    <div class="need-item">
+                        <h4>Exclusion Systémique</h4>
+                        <p>Les structures institutionnelles ne sont pas perçues comme accessibles ou rassurantes pour de nombreuses personnes vulnérables.</p>
+                    </div>
+                    <div class="need-item">
+                        <h4>Ruptures de Parcours</h4>
+                        <p>Isolement social, manque de confiance, décrochages prolongés ou incompréhension du système sont des réalités quotidiennes.</p>
+                    </div>
+                    <div class="need-item">
+                        <h4>Manque d'Accompagnement</h4>
+                        <p>Absence de réseau, méconnaissance des codes sociaux et professionnels, manque d'accompagnement adapté aux besoins spécifiques.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <h2>Notre Réponse</h2>
+            <div class="values">
+                <div class="container">
+                    <p style="font-size: 1.2rem; text-align: center; margin-bottom: 40px; font-weight: 500;">
+                        Depuis 2015, A.V.I.F propose une alternative concrète : un accompagnement humain, 
+                        accessible et efficace pour combler ce fossé social.
+                    </p>
+                    <div class="values-grid">
+                        <div class="value-item">
+                            <div class="value-icon">G</div>
+                            <h4>Gratuité Totale</h4>
+                            <p>Aucun critère d'âge, de statut administratif ou de condition financière. L'accompagnement est entièrement gratuit.</p>
+                        </div>
+                        <div class="value-item">
+                            <div class="value-icon">P</div>
+                            <h4>Proximité</h4>
+                            <p>Approche développée hors des cadres formels, dans une logique de proximité et de respect mutuel.</p>
+                        </div>
+                        <div class="value-item">
+                            <div class="value-icon">C</div>
+                            <h4>Confiance</h4>
+                            <p>Le bouche-à-oreille reste notre principal vecteur, reflet de la crédibilité construite sur le terrain.</p>
+                        </div>
+                        <div class="value-item">
+                            <div class="value-icon">R</div>
+                            <h4>Réciprocité</h4>
+                            <p>Transformation du bénéficiaire en acteur de solidarité, créant un réseau vivant et durable.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="section section-alt">
+        <div class="container">
+            <h2>Services Professionnels</h2>
+            <p style="text-align: center; font-size: 1.1rem; margin-bottom: 50px; max-width: 900px; margin-left: auto; margin-right: auto;">
+                Un accompagnement complet et structuré pour répondre aux défis de l'insertion professionnelle et sociale
+            </p>
+            <div class="services">
+                <div class="service-card">
+                    <div class="service-header">
+                        <div class="service-icon">01</div>
+                        <h3>Orientation Professionnelle</h3>
+                    </div>
+                    <p>Évaluation des compétences, identification des objectifs de carrière et orientation vers les secteurs d'activité appropriés.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-header">
+                        <div class="service-icon">02</div>
+                        <h3>Optimisation des Candidatures</h3>
+                    </div>
+                    <p>Rédaction professionnelle de CV et lettres de motivation, préparation stratégique aux entretiens d'embauche.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-header">
+                        <div class="service-icon">03</div>
+                        <h3>Développement Professionnel</h3>
+                    </div>
+                    <p>Formation à la communication professionnelle, coaching en posture et valorisation des compétences acquises.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-header">
+                        <div class="service-icon">04</div>
+                        <h3>Support Juridique</h3>
+                    </div>
+                    <p>Accompagnement juridique de base, notamment pour les oppositions à des ordonnances pénales souvent liées à des procédures discutables.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-header">
+                        <div class="service-icon">05</div>
+                        <h3>Assistance Administrative</h3>
+                    </div>
+                    <p>Rédaction de courriers officiels, aide aux démarches administratives complexes et navigation dans le système bureaucratique.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-header">
+                        <div class="service-icon">06</div>
+                        <h3>Accompagnement Psychosocial</h3>
+                    </div>
+                    <p>Écoute professionnelle sans jugement, soutien dans la reconstruction de la confiance en soi et de l'estime personnelle.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="impact" class="stats">
+        <div class="container">
+            <h2>Résultats Concrets</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 40px; opacity: 0.9;">
+                Près de dix années d'engagement bénévole au service de l'insertion sociale
+            </p>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <h3>10</h3>
+                    <p>Années d'Expérience</p>
+                </div>
+                <div class="stat-item">
+                    <h3>300+</h3>
+                    <p>Personnes Accompagnées</p>
+                </div>
+                <div class="stat-item">
+                    <h3>100%</h3>
+                    <p>Financement Bénévole</p>
+                </div>
+                <div class="stat-item">
+                    <h3>0€</h3>
+                    <p>Coût pour les Bénéficiaires</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="impact-section">
+        <div class="container">
+            <h2>Impact Social Mesurable</h2>
+            <div class="impact-grid">
+                <div class="impact-item">
+                    <div class="impact-number">70%</div>
+                    <h4>Retour à l'Emploi</h4>
+                    <p>Des personnes accompagnées retrouvent une activité professionnelle dans les 12 mois suivant l'accompagnement.</p>
+                </div>
+                <div class="impact-item">
+                    <div class="impact-number">85%</div>
+                    <h4>Confiance Retrouvée</h4>
+                    <p>Amélioration significative de l'estime de soi et de la capacité à entreprendre des démarches autonomes.</p>
+                </div>
+                <div class="impact-item">
+                    <div class="impact-number">90%</div>
+                    <h4>Satisfaction</h4>
+                    <p>Taux de satisfaction des bénéficiaires concernant la qualité et l'efficacité de l'accompagnement reçu.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="apropos" class="section">
+        <div class="container">
+            <h2>Leadership et Expertise</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Faysal Mohamad Mah - Fondateur et Directeur</h3>
+                    <p style="margin-bottom: 25px;">
+                        <strong>Formation technique :</strong> Diplômé en informatique au Locle puis à Neuchâtel, 
+                        avec une solide expertise technique acquise dans le canton.
+                    </p>
+                    <p style="margin-bottom: 25px;">
+                        <strong>Ancrage territorial :</strong> Plus de 20 ans d'engagement dans le football amateur régional, 
+                        développement d'un réseau professionnel et associatif étendu dans le canton de Neuchâtel.
+                    </p>
+                    <p style="margin-bottom: 25px;">
+                        <strong>Engagement civique :</strong> Membre actif du Collectif pour la Mémoire depuis 2020, 
+                        travail de sensibilisation et de documentation sur l'histoire locale, notamment les enjeux 
+                        liés au passé colonial et aux questions sociales contemporaines.
+                    </p>
+                    <p>
+                        <strong>Vision stratégique :</strong> Identification précoce en 2015 des lacunes dans 
+                        l'accompagnement social traditionnel et développement d'une approche innovante 
+                        basée sur la proximité et la réciprocité.
+                    </p>
+                </div>
+                <div class="about-image">
+                    AVIF
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="philosophy">
+        <div class="container">
+            <h2>Philosophie d'Intervention</h2>
+            <div style="max-width: 900px; margin: 0 auto;">
+                <p style="font-size: 1.2rem; line-height: 1.8; margin-bottom: 30px; text-align: center;">
+                    Notre approche se distingue par son développement hors des cadres institutionnels formels, 
+                    privilégiant une logique de proximité et de respect mutuel.
+                </p>
+                <div class="quote-box">
+                    <p style="font-size: 1.1rem; line-height: 1.7; margin-bottom: 20px;">
+                        <strong>Principe de réciprocité :</strong> Chaque personne accompagnée est invitée, 
+                        lorsqu'elle le peut, à contribuer à son tour à l'effort collectif. Cette dynamique 
+                        transforme le bénéficiaire temporaire en acteur permanent de solidarité.
+                    </p>
+                    <p style="font-size: 1.1rem; line-height: 1.7; margin: 0;">
+                        <strong>Légitimité terrain :</strong> Le bouche-à-oreille demeure notre principal 
+                        vecteur de développement, témoignant de la confiance et de la crédibilité construites 
+                        auprès des populations cibles, malgré une structure exclusivement bénévole.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="section section-alt">
+        <div class="container">
+            <h2>Demande d'Accompagnement</h2>
+            <p style="text-align: center; margin-bottom: 50px; font-size: 1.1rem;">
+                Contactez-nous pour évaluer vos besoins d'accompagnement professionnel et social. 
+                Tous nos services sont entièrement gratuits et confidentiels.
+            </p>
+            <div class="contact-form">
+                <form>
+                    <div class="form-group">
+                        <label for="nom">Nom complet *</label>
+                        <input type="text" id="nom" name="nom" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Adresse email *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="telephone">Numéro de téléphone</label>
+                        <input type="tel" id="telephone" name="telephone">
+                    </div>
+                    <div class="form-group">
+                        <label for="situation">Votre situation actuelle</label>
+                        <select id="situation" name="situation">
+                            <option value="">Sélectionnez votre situation</option>
+                            <option value="recherche-emploi">En recherche d'emploi</option>
+                            <option value="formation">En recherche de formation</option>
+                            <option value="reconversion">En reconversion professionnelle</option>
+                            <option value="demarches-admin">Difficultés administratives</option>
+                            <option value="autre">Autre situation</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Description de vos besoins *</label>
+                        <textarea id="message" name="message" required placeholder="Décrivez votre situation actuelle et le type d'accompagnement souhaité..."></textarea>
+                    </div>
+                    <div style="text-align: center;">
+                        <button type="submit" class="cta-button
